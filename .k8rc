@@ -1,0 +1,94 @@
+# Attach to a running container and run bash
+function kx {
+  # Usage: kx <namespace> <pod> <optional-container>
+  POD=$(kubectl get pod -n $1 | grep "^$2" | awk 'NR==1{print $1}') # Get pod name
+  if [[ -z "$3" ]]; then # Check if container specified
+    if [[ $2 == "site" ]] || [[ $2 == "directory" ]] || [[ $2 == "app" ]]; then # Only site, directory and app have 2 containers per pod
+      kubectl exec -it $POD -c $2 bash -n $1 # Default to rails container if not specified
+    else
+      kubectl exec -it $POD bash -n $1 # All other pods don't need a container specified
+    fi
+  else
+    kubectl exec -it $POD -c $3 bash -n $1 # Use specified container in pod
+  fi
+}
+
+# Stream logs from a pod/container
+function kl {
+  # Usage: kl <namespace> <pod> <optional-container>
+  POD=$(kubectl get pod -n $1 | grep "$2" | awk 'NR==1{print $1}') # Get pod name
+  if [[ -z "$3" ]]; then # Check if container specified
+    if [[ $2 == "site" ]] || [[ $2 == "directory" ]] || [[ $2 == "app" ]]; then # Only site and directory have 2 containers per pod
+      kubectl logs -f $POD -c $2 -n $1 # Default to rails container if not specified
+    else
+      kubectl logs -f $POD -n $1 # All other pods don't need a container specified
+    fi
+  else
+    kubectl logs -f $POD -c $3 -n $1 # Use specified container in pod
+  fi
+}
+
+# Connect to the mysql database for a stack
+function kdb {
+  # Usage: kdb <namespace>
+  POD=$(kubectl get pod -n $1 | grep "mysql" | awk '{print $1}') # Get mysql pod name
+  kubectl port-forward $POD 3333:3306 -n $1
+}
+
+# Watch pods in specified namespace
+function kwp {
+  # Usage: kwp <namespace>
+  watch -n3 kubectl get pod -n $1
+}
+
+# Watch pod resource usage in specified namespace
+function ktop {
+  # Usage: ktop <namespace>
+  watch -n15 "kubectl top pod -n $1 | sort"
+}
+
+
+# kubectl
+alias k='kubectl'
+
+# File based commands
+alias kaf='kubectl apply -f'
+alias kcf='kubectl create -f'
+alias kdf='kubectl delete -f'
+alias krf='kubectl replace -f'
+
+# Delete resources
+alias kdns='kubectl delete namespace'
+alias kdpo='kubectl delete pod'
+alias kdpof='kubectl delete pod --force --grace-period=0'
+alias kdsvc='kubectl delete service'
+
+# Get resources
+alias kgns='kubectl get namespace'
+alias kgpo='kubectl get pod'
+alias kga='kubectl get configmap,daemonset,deployment,ingress,pod,pvc,secret,service -o wide -n'
+
+# Watch resources
+alias kwns='watch -n3 kubectl get ns'
+alias kwp='watch -n3 kubectl get pod -n'
+
+# Do stuff with pods
+alias ke='kubectl exec -it'
+alias kpf='kubectl port-forward'
+
+# Change contexts and proxy
+alias kmini="kubectl config use-context minikube && kubectl proxy"
+alias kprod="kubectl config use-context bravo.production.k8s.oneflare.net && kubectl proxy"
+alias kstage="kubectl config use-context bravo.staging.k8s.oneflare.io && kubectl proxy"
+alias kp='kubectl proxy'
+
+# kubectl config
+alias kcdc='kubectl config delete-context'
+alias kcgc='kubectl config get-contexts'
+alias kcuc='kubectl config use-context'
+
+# force delete pods that are failed, unknown or evicted
+function kdfp {
+  # Usage: kdfp <namespace>
+  kubectl delete -n $1 --force --grace-period=0 pod $(kubectl get pod -n $1 | grep "Evicted\|Failed\|Unknown\|Terminating\|NodeLost" | awk '{print $1}')
+}
