@@ -79,7 +79,7 @@ alias kpf='kubectl port-forward'
 # Change contexts and proxy
 alias kmini="kubectl config use-context minikube && kubectl proxy"
 alias kprod="kubectl config use-context bravo.production.k8s.oneflare.net && kubectl proxy"
-alias kstage="kubectl config use-context bravo.staging.k8s.oneflare.io && kubectl proxy"
+alias kstage="kubectl config use-context charlie.staging.k8s.oneflare.io && kubectl proxy"
 alias kp='kubectl proxy'
 
 # kubectl config
