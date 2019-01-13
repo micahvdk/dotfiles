@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+# ===  Make it sexy ===
+source "$HOME/.shell_style"
+
+# === Plugins ===
+antibody bundle < "$HOME/.antibody" > "$HOME/.zsh-plugins"
+source "$HOME/.zsh-plugins"
+
+# === Secrets ===
+source "$HOME/.shell/.work_secrets"
+source "$HOME/.shell/.personal_secrets"
+
+# === Shell exports and functions ===
+source "$HOME/.shell/.exports"
+source "$HOME/.shell/.aliases"
+source "$HOME/.shell/.functions"
+source "$HOME/.shell/.k8rc"

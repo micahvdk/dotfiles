@@ -1,0 +1,67 @@
+# === Aliases ===
+
+# = Shortcuts =
+alias d="cd ~/Documents"
+alias lib="cd ~/Library"
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias h="history"
+alias j="jobs"
+alias e='"$EDITOR"'
+
+# = Navigation =
+alias o="open"
+alias oo="open ."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# = App Shortcuts =
+# Pretty 'ls'
+alias l="exa -abghl --git"
+
+# Prefer 'nvim' as it has saner defaults
+if test "$(which neovim)"; then
+  alias vim="neovim"
+  alias vi="neovim"
+fi
+
+# = Utils =
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+
+# = OSX =
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias spotoff="sudo mdutil -a -i off"
+alias spoton="sudo mdutil -a -i on"
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume 7'"
+alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+
+# Update brew packages and casks
+alias brew_update="brew update; brew upgrade; brew cleanup; brew cu --cleanup --yes" 
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# List git branches on the local machine sorted by recent updates, adding a star to remote tracking branches
+function git_list_branches() {
+  RED="\e[91m";
+  for branch in $(git branch | sed s/^..//); do
+    time_ago=$(git log -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $branch --);
+    # Add a red star to mark branches that are tracking something upstream
+    tracks_upstream=$(if [ "$(git rev-parse $branch@{upstream} 2>/dev/null)" ]; then printf "$RED★"; fi);
+    printf "%-53s - %s %s\n" $time_ago $branch $tracks_upstream;
+  done | sort;
+}
+
+# Download file and save it with filename of remote file
+alias get="curl -O -L"
+
+alias hosts='sudo $EDITOR /etc/hosts'
+alias flushdns="dscacheutil -flushcache"

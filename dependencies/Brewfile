@@ -1,0 +1,76 @@
+# Taps
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "getantibody/tap"
+tap "mveritym/mel"
+tap "garethr/kubeval"
+tap "johanhaleby/kubetail"
+tap "buo/cask-upgrade"
+
+# Utils
+brew "zsh" # shell
+brew "bash" # another shell
+brew "getantibody/tap/antibody" # plugin manager
+brew "exa" # better ls
+brew "rg" # recursive regex grep
+brew "git" # for gitting
+brew "openssl"
+brew "wget"
+brew "python"
+brew "go"
+brew "neovim"
+brew "kubernetes-cli"
+brew "rbenv" # ruby version manager
+brew "nodenv" # node version manager
+brew "cmake"
+brew "gcc"
+brew "curl"
+brew "kops"
+brew "kubectx"
+brew "ack"
+brew "coreutils"
+brew "gnupg"
+brew "mveritym/homebrew-mel/kubedecode"
+brew "kubernetes-cli"
+brew "kubernetes-helm"
+brew "kubetail"
+brew "kubeval"
+brew "libpq" # Postgres Client libraries, prevents need to install 'postgresql'
+brew "mas"
+brew "mysql-client" # MySQL Client libraries, prevents need to install 'mysql'
+brew "tig"
+brew "watch"
+brew "diff-so-fancy"
+brew "vim"
+
+# Apps
+cask "docker"
+cask "firefox"
+cask "google-chrome"
+cask "google-drive-file-stream"
+cask "iterm2"
+cask "ngrok"
+cask "postman"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "sequel-pro"
+cask "slack"
+cask "spectacle"
+cask "the-unarchiver"
+cask "vlc"
+cask "wkhtmltopdf"
+
+# Fonts
+cask "font-anonymouspro-nerd-font-mono"
+cask "font-firacode-nerd-font-mono"
+cask "font-firamono-nerd-font-mono"
+cask "font-inconsolata-nerd-font-mono"
+cask "font-meslo-nerd-font-mono"
+cask "font-sourcecodepro-nerd-font-mono"
+
+# Mac App Store
+mas "Xcode", id: 497799835 # the devil (NS), unnecessarily necessary (GC)

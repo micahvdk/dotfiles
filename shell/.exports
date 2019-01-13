@@ -1,0 +1,15 @@
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+export GOPATH=$HOME/go
+export EDITOR=vim # change me if needed
+
+# Git
+GIT_AUTHOR_NAME=""
+GIT_AUTHOR_EMAIL=""
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
