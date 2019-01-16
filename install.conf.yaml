@@ -10,6 +10,7 @@
       create: true
     ~/.editorconfig: dot_utils/.editorconfig
     ~/.gitignore: dot_utils/.gitignore
+    ~/.hushlogin: dot_utils/.hushlogin
     ~/.screenrc: dot_utils/.screenrc
     ~/.shell_env: config/shell_env
     ~/.shell_style: config/shell_style
