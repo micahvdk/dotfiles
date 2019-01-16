@@ -63,7 +63,6 @@ cask "slack"
 cask "spectacle"
 cask "the-unarchiver"
 cask "vlc"
-cask "wkhtmltopdf"
 
 # Fonts
 cask "font-anonymouspro-nerd-font-mono"
