@@ -72,6 +72,3 @@ cask "font-firamono-nerd-font-mono"
 cask "font-inconsolata-nerd-font-mono"
 cask "font-meslo-nerd-font-mono"
 cask "font-sourcecodepro-nerd-font-mono"
-
-# Mac App Store
-mas "Xcode", id: 497799835 # the devil (NS), unnecessarily necessary (GC)
