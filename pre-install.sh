@@ -13,6 +13,7 @@ which -s brew
 if [[ $? != 0 ]] ; then
   echo "Homebrew not found. Installing..."
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew update
 else
   echo "Homebrew already installed! Updating..."
   brew update
