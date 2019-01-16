@@ -26,9 +26,5 @@
     - dependencies/Brewfile
 
 - shell:
-    - command: ./editor.sh
-      stdin: true
-      stdout: true
-      description: "Please enter your editor of choice: atom, vscode, nvim, sublime or quit to exit"
     - [./macos/macos, Setting up macos defaults]
     - [./post-install.sh, Running post-install tasks]

@@ -61,8 +61,8 @@ These secret files should be used to export credentials, access keys, tokens etc
 
 You will need to change a few things in `shell/.exports` to match your details:
 
-    GIT_AUTHOR_NAME =
-    GIT_AUTHOR_EMAIL =
+    GIT_AUTHOR_NAME=
+    GIT_AUTHOR_EMAIL=
     EDITOR=
 
 Set editor to one of atom, vscode, sublime or vim
@@ -76,9 +76,11 @@ Set editor to one of atom, vscode, sublime or vim
 This may take some time (like 30 mins) on the first setup so go grab a coffee.
 You may be asked for your password a few times so make sure to enter it when needed.
 
-7. Select editors to install
+7. Select editor/s to install
 
-You can install multiple or just one, make sure to install the one you have set as your editor earlier!
+   `./editor.sh`
+
+You can install multiple or just one, make sure to install the one you set EDITOR earlier!
 
 8. Setup iTerm2.
 
