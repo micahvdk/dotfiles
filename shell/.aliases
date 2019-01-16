@@ -12,10 +12,6 @@ alias e='"$EDITOR"'
 # = Navigation =
 alias o="open"
 alias oo="open ."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
 
 # = App Shortcuts =
 # Pretty 'ls'
@@ -23,14 +19,17 @@ alias l="exa -abghl --git"
 
 # Prefer 'nvim' as it has saner defaults
 if test "$(which neovim)"; then
-  alias vim="neovim"
-  alias vi="neovim"
+  alias vim="nvim"
+  alias vi="nvim"
 fi
 
 # = Utils =
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+
+# Copy public key to clipboard
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to clipboard.'"
 
 # = OSX =
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"

@@ -1,10 +1,8 @@
-export LANG="en_US"
-export LC_ALL="en_US.UTF-8"
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-
+# Set GOPATH
 export GOPATH=$HOME/go
-export EDITOR=vim # change me if needed
+
+# Define default editor
+export EDITOR=vim
 
 # Git
 GIT_AUTHOR_NAME=""
