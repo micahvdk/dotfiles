@@ -17,3 +17,11 @@ else
   echo "Homebrew already installed! Updating..."
   brew update
 fi
+
+# Create secrets files if they don't exist yet
+if [[ ! -f secrets/.personal_secrets ]]; then
+  touch secrets/.personal_secrets
+fi
+if [[ ! -f secrets/.work_secrets ]]; then
+  touch secrets/.work_secrets
+fi

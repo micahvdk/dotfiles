@@ -14,9 +14,6 @@
     ~/.shell_env: config/shell_env
     ~/.shell_style: config/shell_style
     ~/.shell_post: config/shell_post
-    ~/.bash_profile: config/bash_profile
-    ~/.bashrc: config/bashrc
-    ~/.history.zsh: config/history.zsh
     ~/.zshrc:
       force: true
       path: config/zshrc
