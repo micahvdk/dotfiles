@@ -1,1 +1,8 @@
-# Empty
+# Initialize rbenv
+eval "$(rbenv init -)"
+
+# Initialize nodenv
+eval "$(nodenv init -)"
+
+# Initialize goenv
+eval "$(goenv init -)"

@@ -65,3 +65,6 @@ alias get="curl -O -L"
 
 alias hosts='sudo $EDITOR /etc/hosts'
 alias flushdns="dscacheutil -flushcache"
+
+# when brew install is really needed
+alias subrew='brew'

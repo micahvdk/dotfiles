@@ -26,6 +26,7 @@ brew "neovim"
 brew "kubernetes-cli"
 brew "rbenv" # ruby version manager
 brew "nodenv" # node version manager
+brew "goenv" # go version manager
 brew "cmake"
 brew "gcc"
 brew "curl"
