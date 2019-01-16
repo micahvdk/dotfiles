@@ -2,8 +2,7 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-    - [sh pre-install.sh, Running pre installation script]
-    - [sh .macos.sh, Running macos setup]
+    - [./pre-install.sh, Running pre installation script]
 
 - link:
     ~/.shell:
@@ -29,11 +28,6 @@
     - dependencies/Brewfile
 
 - shell:
-    - [
-        sudo xcodebuild -license accept,
-        Running xcode select,
-        enter your password,
-      ]
     - command: ./editor.sh
       stdin: true
       stdout: true
