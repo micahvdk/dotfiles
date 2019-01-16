@@ -31,3 +31,4 @@
       stdout: true
       description: "Please enter your editor of choice: 1) Atom 2) VS Code 3) VIM 4) Sublime 5) Exit"
     - [./macos/macos, Setting up macos defaults]
+    - [./post-install.sh, Running post-install tasks]
