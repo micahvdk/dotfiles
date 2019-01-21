@@ -17,12 +17,6 @@ alias oo="open ."
 # Pretty 'ls'
 alias l="exa -abghl --git"
 
-# Prefer 'nvim' as it has saner defaults
-if test "$(which neovim)"; then
-  alias vim="nvim"
-  alias vi="nvim"
-fi
-
 # = Utils =
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
