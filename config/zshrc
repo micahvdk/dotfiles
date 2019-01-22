@@ -94,4 +94,7 @@ less_options=(
 export LESS="${less_options[*]}"
 export PAGER='less'
 
+if [[ -f ~/.shell/.user ]];
+  source ~/.shell/.user
+fi
 source $HOME/.shell_post
