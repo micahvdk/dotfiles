@@ -16,6 +16,6 @@ source "$HOME/.zsh_plugins.sh"
 # source "$HOME/.shell/.functions"
 # source "$HOME/.shell/.k8rc"
 
-for file in "$HOME/.shell/"; do
+for file in $HOME/.shell/ .[^.]*; do
   source "$file"
 done
