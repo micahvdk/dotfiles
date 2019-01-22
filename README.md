@@ -65,7 +65,7 @@ You will need to change a few things in `shell/.exports` to match your details:
     GIT_AUTHOR_EMAIL=
     EDITOR=
 
-Set editor to one of atom, vscode, sublime or vim
+Set `EDITOR` to one of atom, vscode, sublime or vim
 
 5. Sign into the mac app store. You need to do this manually via the App Store application prior to running the installation script otherwise dependencies will not install correctly.
 
@@ -76,25 +76,14 @@ Set editor to one of atom, vscode, sublime or vim
 This may take some time (like 30 mins) on the first setup so go grab a coffee.
 You may be asked for your password a few times so make sure to enter it when needed.
 
-7. Select editor/s to install
+7. Install Editor/s
 
-   `./editor.sh`
+   `./editor/install.sh`
 
-You can install multiple or just one, make sure to install the one you set EDITOR earlier!
+You can install multiple or just one, make sure to install the one you set as `EDITOR` earlier!
 
 8. Setup iTerm2.
 
-Open iTerm2 from Applications and go to Preferences -> Profiles
-Import colour schemes under the Colors Tabe, Colors Preset drop down bottom right. We have included some nice material design ones but feel free to use what ever you feel like. Some more are found at: https://iterm2colorschemes.com
-
-Change your font to a powerline font under Text -> Change Font. Make sure to select a 'Nerd Font' that was installed as part of the setup to ensure the icons work properly.
-
-9. TODO
-
-setup apps
-
-    chrome
-    docker
-    firefox
-    slack
-    spectacle
+- Open iTerm2 from Applications and go to *Preferences -> Profiles*
+- Import colour schemes under the *Colors* Tab, *Colors Preset* drop down bottom right. We have included some nice material design ones but feel free to use what ever you feel like. Some more are found [here](https://iterm2colorschemes.com)
+- Change your font under *Text -> Change Font*. Make sure to select a "*Nerd Font Complete*" that was installed as part of the setup to ensure the icons work properly.

@@ -15,7 +15,7 @@ do
             ;;
         *)
             echo "Installing and setting up $opt"
-            source editor/$opt/install.sh
+            /bin/bash editor/$opt/install.sh
             ;;
     esac
 done
