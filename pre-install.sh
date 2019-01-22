@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Check if oh-my-zsh is installed
+
+# Install Oh My Zsh if it is not installed
+# Otherwise, upgrade to the latest version
 OMZDIR="$HOME/.oh-my-zsh"
 if [ ! -d "$OMZDIR" ]; then
   echo 'Installing oh-my-zsh'

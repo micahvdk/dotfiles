@@ -22,8 +22,11 @@
     ~/.shell/.work_secrets: secrets/.work_secrets
     ~/.shell/.personal_secrets: secrets/.personal_secrets
 
-- brewfile:
-    - dependencies/Brewfile
+- shell:
+    - [brew bundle --no-upgrade --file=dependencies/Brewfile, Installing tools and apps with Brew]
+
+- shell:
+    - [antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh]
 
 - shell:
     - [./macos/macos, Setting up macos defaults]
