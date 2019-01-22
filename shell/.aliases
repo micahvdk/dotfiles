@@ -1,5 +1,8 @@
 # === Aliases ===
 
+# Greg's most important alias
+alias cl='clear'
+
 # = Shortcuts =
 alias d="cd ~/Documents"
 alias lib="cd ~/Library"
