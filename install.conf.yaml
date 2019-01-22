@@ -17,7 +17,7 @@
     ~/.zshrc:
       force: true
       path: config/zshrc
-    ~/.zsh_plugins.txt: dot_utils/zsh_plugins.txt
+    ~/.zsh_plugins.txt: dot_utils/.zsh_plugins.txt
     ~/.shell/.work_secrets: secrets/.work_secrets
     ~/.shell/.personal_secrets: secrets/.personal_secrets
 
