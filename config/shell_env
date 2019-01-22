@@ -4,15 +4,18 @@
 source "$HOME/.shell_style"
 
 # === Plugins ===
-antibody bundle < "$HOME/.antibody" > "$HOME/.zsh-plugins"
-source "$HOME/.zsh-plugins"
+source "$HOME/.zsh_plugins.sh"
 
-# === Secrets ===
-source "$HOME/.shell/.work_secrets"
-source "$HOME/.shell/.personal_secrets"
+# # === Secrets ===
+# source "$HOME/.shell/.work_secrets"
+# source "$HOME/.shell/.personal_secrets"
+# 
+# # === Shell exports and functions ===
+# source "$HOME/.shell/.exports"
+# source "$HOME/.shell/.aliases"
+# source "$HOME/.shell/.functions"
+# source "$HOME/.shell/.k8rc"
 
-# === Shell exports and functions ===
-source "$HOME/.shell/.exports"
-source "$HOME/.shell/.aliases"
-source "$HOME/.shell/.functions"
-source "$HOME/.shell/.k8rc"
+for file in "$HOME/.shell/"; do
+  source "$file"
+done
