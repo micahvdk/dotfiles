@@ -11,14 +11,13 @@
     ~/.editorconfig: dot_utils/.editorconfig
     ~/.gitignore: dot_utils/.gitignore
     ~/.hushlogin: dot_utils/.hushlogin
-    ~/.screenrc: dot_utils/.screenrc
     ~/.shell_env: config/shell_env
     ~/.shell_style: config/shell_style
     ~/.shell_post: config/shell_post
     ~/.zshrc:
       force: true
       path: config/zshrc
-    ~/.antibody: dependencies/antibody.txt
+    ~/.zsh_plugins.txt: dot_utils/zsh_plugins.txt
     ~/.shell/.work_secrets: secrets/.work_secrets
     ~/.shell/.personal_secrets: secrets/.personal_secrets
 
