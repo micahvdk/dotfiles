@@ -22,7 +22,7 @@
     ~/.shell/.personal_secrets: secrets/.personal_secrets
 
 - shell:
-    - [brew bundle --no-upgrade --file=dependencies/Brewfile, Installing tools and apps with Brew]
+    - [brew bundle check --file=dependencies/Brewfile || brew bundle --no-upgrade --file=dependencies/Brewfile, Installing tools and apps with Brew]
 
 - shell:
     - [antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh]
