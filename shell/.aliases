@@ -40,7 +40,7 @@ alias pumpitup="osascript -e 'set volume 7'"
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Update brew packages and casks
-alias brew_update="brew update; brew upgrade; brew cleanup; brew cu --cleanup --yes" 
+alias brew_update="brew update; brew upgrade; brew cleanup; brew cu --cleanup --yes"
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -53,3 +53,6 @@ alias flushdns="dscacheutil -flushcache"
 
 # when brew install is really needed
 alias subrew='brew'
+
+# Get summary of diff between master and production branch (for deployment)
+alias deploydiff='git log production..master --pretty=format:"%h%x09%an%x09%s"'
