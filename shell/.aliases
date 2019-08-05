@@ -55,4 +55,5 @@ alias flushdns="dscacheutil -flushcache"
 alias subrew='brew'
 
 # Get summary of diff between master and production branch (for deployment)
-alias deploydiff='git log production..master --pretty=format:"%h%x09%an%x09%s"'
+alias deploydiff="git log production..master --pretty=format:'%<(25)%an    %s' --abbrev-commit"
+
