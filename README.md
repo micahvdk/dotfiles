@@ -1,6 +1,6 @@
 # Oneflare Dotfiles
 
-#### temp test
+## temp test
 
 The goal of these dotfiles is to be a base for you to get your dev machine up and running at Oneflare with a functional and useful terminal.
 
