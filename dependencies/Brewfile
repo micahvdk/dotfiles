@@ -50,6 +50,7 @@ brew "vim"
 
 # Apps
 cask "docker"
+cask "displaylink"
 cask "firefox"
 cask "google-chrome"
 cask "google-drive-file-stream"

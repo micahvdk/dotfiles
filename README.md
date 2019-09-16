@@ -35,6 +35,16 @@ The repository is split into a few parts:
 We feel that ZSH is superior for a number of reasons, if you wish to not use it, you can always remove the parts in `install.conf.yaml` that copy in the `.zshrc` files.
 
 The setup symlinks your shell files to the project folder so if you change anything, you should only need to restart a new shell session for things to take affect. This excludes adding new brew components, which we suggest adding to the Brewfile and rerunning the install script.
+### Prerequisites
+
+You need to make sure your SSH key has been installed.
+
+[Generate and Install SSH Key](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+[Import SSH Key into GitHub](https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account)
+
+This is used to make sure you can clone from GitHub. 
+
 
 ### Installation
 
@@ -43,6 +53,7 @@ The setup symlinks your shell files to the project folder so if you change anyth
 Make sure to make a fork of this repository so you can hack on your personal config. If you want to add something back into the master repository, feel free to make a pull request.
 
 2.  Clone your new dotfiles down and change into the directory.
+
 
 At this point it does not matter where the dotfiles project folder exists, but we recommend cloning into `~/`
 
@@ -86,4 +97,4 @@ You can install multiple or just one, make sure to install the one you set as `E
 
 - Open iTerm2 from Applications and go to *Preferences -> Profiles*
 - Import colour schemes under the *Colors* Tab, *Colors Preset* drop down bottom right. We have included some nice material design ones but feel free to use what ever you feel like. Some more are found [here](https://iterm2colorschemes.com)
-- Change your font under *Text -> Change Font*. Make sure to select a "*Nerd Font Complete*" that was installed as part of the setup to ensure the icons work properly.
+- Change your font under *Text -> Change Font*. Make sure to select a "*Nerd Font*" that was installed as part of the setup to ensure the icons work properly.
