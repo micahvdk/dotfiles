@@ -6,18 +6,36 @@
 
 - link:
     ~/.shell:
+      relink: true
       path: shell
       create: true
-    ~/.editorconfig: dot_utils/.editorconfig
-    ~/.gitignore: dot_utils/.gitignore
-    ~/.hushlogin: dot_utils/.hushlogin
-    ~/.shell_env: config/shell_env
-    ~/.shell_style: config/shell_style
-    ~/.shell_post: config/shell_post
+      force: true
+    ~/.editorconfig:
+      relink: true
+      force: true
+      path: dot_utils/.editorconfig
+    ~/.gitignore:
+      relink: true
+      force: true
+      path: dot_utils/.gitignore
+    ~/.hushlogin:
+      force: true
+      path: dot_utils/.hushlogin
+    ~/.shell_env:
+      force: true
+      path:  config/shell_env
+    ~/.shell_style:
+      force: true
+      path: config/shell_style
+    ~/.shell_post:
+      force: true
+      path: config/shell_post
     ~/.zshrc:
       force: true
       path: config/zshrc
-    ~/.zsh_plugins.txt: dot_utils/.zsh_plugins.txt
+    ~/.zsh_plugins.txt:
+      force: true
+      path: dot_utils/.zsh_plugins.txt
     ~/.shell/.work_secrets: secrets/.work_secrets
     ~/.shell/.personal_secrets: secrets/.personal_secrets
 
