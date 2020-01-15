@@ -65,6 +65,9 @@ for r in zsh-autosuggestions zsh-syntax-highlighting; do
 done
 
 # Link custom .zsh files to Oh My Zsh custom folder
+if [[ ! -f custom/secret.zsh ]]; then
+  touch custom/secret.zsh
+fi
 for f in custom/*; do
   echo "Linking custom .zsh files..."
   ln -sf $HOME/dotfiles/$f $HOME/.oh-my-zsh/$f
