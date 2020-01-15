@@ -1,7 +1,0 @@
-#!/bin/sh
-# Sets reasonable macOS defaults.
-
-echo ""
-echo "› Finder:"
-echo "  › Always open everything in Finder's list view"
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv

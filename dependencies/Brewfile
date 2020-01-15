@@ -1,74 +1,118 @@
-# Taps
+tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
-tap "homebrew/services"
-tap "getantibody/tap"
-tap "mveritym/mel"
-tap "garethr/kubeval"
-tap "johanhaleby/kubetail"
-tap "buo/cask-upgrade"
 
-# Utils
-brew "zsh" # shell
-brew "bash" # another shell
-brew "getantibody/tap/antibody" # plugin manager
-brew "exa" # better ls
-brew "rg" # recursive regex grep
-brew "git" # for gitting
-brew "openssl"
-brew "wget"
-brew "python"
-brew "go"
-brew "neovim"
-brew "kubernetes-cli"
-brew "rbenv" # ruby version manager
-brew "nodenv" # node version manager
-brew "goenv" # go version manager
-brew "cmake"
-brew "gcc"
-brew "curl"
-brew "kops"
-brew "kubectx"
+# Search tool like grep, but optimized for programmers
 brew "ack"
-brew "coreutils"
-brew "gnupg"
-brew "mveritym/homebrew-mel/kubedecode"
-brew "kubernetes-cli"
-brew "kubernetes-helm"
-brew "kubetail"
-brew "kubeval"
-brew "libpq" # Postgres Client libraries, prevents need to install 'postgresql'
-brew "mas"
-brew "mysql-client" # MySQL Client libraries, prevents need to install 'mysql'
-brew "tig"
-brew "watch"
-brew "diff-so-fancy"
-brew "vim"
 
-# Apps
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
+brew "asdf"
+
+# Interpreted, interactive, object-oriented programming language
+brew "python"
+
+# Official Amazon AWS command-line interface
+brew "awscli"
+
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+
+# Distributed revision control system
+brew "git"
+
+# Add GitHub support to git on the command-line
+brew "hub"
+
+# Production Grade K8s Installation, Upgrades, and Management
+brew "kops"
+
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+
+# Postgres C API library
+brew "libpq"
+
+# Keep your Mac's application settings in sync
+brew "mackup"
+
+# Mac App Store command-line interface
+brew "mas"
+
+# Open source relational database management system
+brew "mysql-client@5.7"
+
+# Passphrase entry dialog utilizing the Assuan protocol
+brew "pinentry"
+
+# Interpreted, interactive, object-oriented programming language
+brew "python@2"
+
+# User interface to the TELNET protocol (built from macOS Sierra sources)
+brew "telnet"
+
+# Text interface for Git repositories
+brew "tig"
+
+# Extraction utility for .zip compressed archives
+brew "unzip"
+
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+
+# Internet file retriever
+brew "wget"
+
+# Tracks most-used directories to make cd smarter
+brew "z"
+
+# UNIX shell (command interpreter)
+brew "zsh"
+
+# Drone CI cli
+tap "drone/drone"
+brew "drone/drone/drone"
+
+# Validate your Kubernetes configurations
+tap "garethr/kubeval"
+brew "garethr/kubeval/kubeval"
+
+# Tail logs from multiple Kubernetes pods at the same time
+tap "johanhaleby/kubetail"
+brew "johanhaleby/kubetail/kubetail"
+
+# Decode all parts of a kubernetes secret, no more copypasting!
+tap "mveritym/mel"
+brew "mveritym/mel/kubedecode"
+
+# The official CLI for Amazon EKS
+tap "weaveworks/tap"
+brew "weaveworks/tap/eksctl"
+
+cask "cyberduck"
 cask "docker"
 cask "displaylink"
 cask "firefox"
-cask "google-chrome"
-cask "google-drive-file-stream"
-cask "iterm2"
-cask "ngrok"
-cask "postman"
-cask "quicklook-csv"
-cask "quicklook-json"
-cask "sequel-pro"
-cask "slack"
-cask "spectacle"
-cask "the-unarchiver"
-cask "vlc"
-
-# Fonts
-cask "font-anonymouspro-nerd-font-mono"
 cask "font-firacode-nerd-font-mono"
-cask "font-firamono-nerd-font-mono"
-cask "font-inconsolata-nerd-font-mono"
-cask "font-meslo-nerd-font-mono"
-cask "font-sourcecodepro-nerd-font-mono"
+cask "google-chrome"
+cask "google-cloud-sdk"
+cask "google-drive-file-stream"
+cask "gpg-suite-no-mail"
+cask "insomnia"
+cask "iterm2"
+cask "lastpass"
+cask "rectangle"
+cask "slack"
+cask "tableplus"
+cask "visual-studio-code"
