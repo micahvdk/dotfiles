@@ -53,9 +53,6 @@ brew "mysql-client@5.7"
 # Passphrase entry dialog utilizing the Assuan protocol
 brew "pinentry"
 
-# Interpreted, interactive, object-oriented programming language
-brew "python@2"
-
 # User interface to the TELNET protocol (built from macOS Sierra sources)
 brew "telnet"
 
