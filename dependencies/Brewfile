@@ -99,7 +99,6 @@ brew "weaveworks/tap/eksctl"
 
 cask "cyberduck"
 cask "docker"
-cask "displaylink"
 cask "firefox"
 cask "font-firacode-nerd-font-mono"
 cask "google-chrome"
