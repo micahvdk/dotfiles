@@ -40,6 +40,9 @@ else
   cd $HOME/dotfiles
 fi
 
+chmod 755 /usr/local/share/zsh
+chmod 755 /usr/local/share/zsh/site-functions
+
 # Install Powerlevel10k zsh theme
 if [[ ! -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
   echo "Installing Powerlevel10k zsh theme..."
@@ -76,7 +79,8 @@ done
 echo "setting up mackup folder"
 mkdir -p $HOME/.mackup
 for f in mackup/*; do
-  ln -sf $HOME/dotfiles/mackup/$f $HOME/.mackup/$f
+  echo "filename: $f"
+  ln -sf $HOME/dotfiles/$f $HOME/.$f
 done
 # Link ssh config
 echo "Linking ssh config..."
