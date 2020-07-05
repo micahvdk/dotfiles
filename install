@@ -130,5 +130,6 @@ echo "
 
 "
 read -r -s -p $'Launching Google Drive File Stream, login to Google drive and then press enter to continue...'
+mackup restore -f
 
 echo "Setup complete, quit terminal and open iTerm to continue..."
