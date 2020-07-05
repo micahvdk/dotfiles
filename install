@@ -72,7 +72,12 @@ for f in custom/*; do
   echo "Linking custom .zsh files..."
   ln -sf $HOME/dotfiles/$f $HOME/.oh-my-zsh/$f
 done
-
+#adding mackup config folder
+echo "setting up mackup folder"
+mkdir -p $HOME/.mackup
+for f in mackup/*; do
+  ln -sf $HOME/dotfiles/mackup/$f $HOME/.mackup/$f
+done
 # Link ssh config
 echo "Linking ssh config..."
 mkdir -p $HOME/.ssh
