@@ -119,4 +119,16 @@ done
 # Install default versions
 asdf install
 
+# Open Google Drive File Stream so that mackup can restore. 
+open /Applications/Google\ Drive\ File\ Stream.app
+echo "
+
+"
+read -r -s -p $'Need to allow Google Drive File Stream in system preferences -- Press enter to continue...'
+open /Applications/Google\ Drive\ File\ Stream.app
+echo "
+
+"
+read -r -s -p $'Launching Google Drive File Stream, login to Google drive and then press enter to continue...'
+
 echo "Setup complete, quit terminal and open iTerm to continue..."
