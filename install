@@ -26,6 +26,51 @@ if [[ $(uname) == "Darwin" ]]; then
   brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
 fi
 
+if [[ $(uname) == "Linux" ]]; then
+  echo "Linux Detected"
+  # Install brew
+  # Install apps & packages with Apt
+    if [[ ! -d $HOME/.asdf ]]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+    cd ~/.asdf
+    git checkout "$(git describe --abbrev=0 --tags)"
+    cd ~/dotfiles
+    echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+    fi
+  echo "Installing packages and with apt"
+  sudo apt update
+  sudo apt-get install -y ack libpcap-dev coreutils python gem ruby rbenv hub git build-essential curl awscli postgresql postgresql-contrib mysql-client telnet pinentry-tty tig unzip neovim watch wget zsh
+    if [[ ! -f /usr/local/bin/kubectl ]]; then
+    echo "Installing kubectl"
+    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/kubectl
+    openssl sha1 -sha256 kubectl
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin
+    else
+    echo "Kubectl is already installed"
+    fi
+    if [[ ! -f /usr/local/bin/kops ]]; then
+    echo "Installing KOPS now"
+    curl -LO https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
+    chmod +x kops-linux-amd64
+    sudo mv ./kops-linux-amd64 /usr/local/bin/kops 
+  fi
+  if [[ ! -d /opt/kubectx ]]; then
+  sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+  fi
+  sudo ln -sf /opt/kubectx/kubectx /usr/local/bin/kubectx
+  sudo ln -sf /opt/kubectx/kubens /usr/local/bin/kubens
+  if [[ ! -f /usr/local/bin/kubeval ]]; then
+  wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+  mkdir -p ./kubeval
+  tar xf kubeval-linux-amd64.tar.gz -C ./kubeval
+  sudo mv ./kubeval/kubeval /usr/local/bin
+  rm -f kubeval-linux-amd64.tar.gz
+  rm -rf ./kubeval
+  fi
+  curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+  sudo mv /tmp/eksctl /usr/local/bin
+fi
 #### Shell (zsh) configuration ####
 # Install Oh My Zsh
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
@@ -40,9 +85,6 @@ else
   cd $HOME/dotfiles
 fi
 
-chmod 755 /usr/local/share/zsh
-chmod 755 /usr/local/share/zsh/site-functions
-
 # Install Powerlevel10k zsh theme
 if [[ ! -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
   echo "Installing Powerlevel10k zsh theme..."
@@ -54,6 +96,10 @@ else
   cd $HOME/dotfiles
 fi
 
+#Install kubetail
+if [[ ! -d $HOME/.oh-my-zsh/custom/plugins/kubetail ]]; then
+git clone https://github.com/johanhaleby/kubetail.git ~/.oh-my-zsh/custom/plugins/kubetail
+fi
 # Install additional zsh plugins not included with Oh My Zsh
 for r in zsh-autosuggestions zsh-syntax-highlighting; do
   if [[ ! -d $HOME/.oh-my-zsh/custom/plugins/$r ]]; then
@@ -75,13 +121,7 @@ for f in custom/*; do
   echo "Linking custom .zsh files..."
   ln -sf $HOME/dotfiles/$f $HOME/.oh-my-zsh/$f
 done
-#adding mackup config folder
-echo "setting up mackup folder"
-mkdir -p $HOME/.mackup
-for f in mackup/*; do
-  echo "filename: $f"
-  ln -sf $HOME/dotfiles/$f $HOME/.$f
-done
+
 # Link ssh config
 echo "Linking ssh config..."
 mkdir -p $HOME/.ssh
@@ -102,9 +142,14 @@ done
 # Create this file to suppress error from z on first 'cd'
 touch $HOME/.z
 
+if [[ $(uname) == "Linux" ]]; then
 # Change the users default shell
 echo "Changing the default shell..."
+sudo chsh -s /usr/bin/zsh $USER
+else
+echo "Changing the default shell..."
 sudo chsh -s /usr/local/bin/zsh $USER
+fi
 
 # Install asdf version manager plugins
 for p in nodejs ruby yarn; do
@@ -121,19 +166,6 @@ for p in nodejs ruby yarn; do
 done
 
 # Install default versions
-asdf install
-
-# Open Google Drive File Stream so that mackup can restore. 
-open /Applications/Google\ Drive\ File\ Stream.app
-echo "
-
-"
-read -r -s -p $'Need to allow Google Drive File Stream in system preferences -- Press enter to continue...'
-open /Applications/Google\ Drive\ File\ Stream.app
-echo "
-
-"
-read -r -s -p $'Launching Google Drive File Stream, login to Google drive and then press enter to continue...'
-mackup restore -f
+$HOME/.asdf/bin/asdf install
 
 echo "Setup complete, quit terminal and open iTerm to continue..."
