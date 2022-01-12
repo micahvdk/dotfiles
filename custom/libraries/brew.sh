@@ -1,8 +1,10 @@
 brew::set::path(){
   if [[ $(uname) == "Darwin" ]]; then
     echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+    echo 'PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
   elif [[ $(uname) == "Linux" ]]; then
     echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.bashrc
+    echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.zshrc
   fi
 }
 
