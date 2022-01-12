@@ -1,3 +1,7 @@
 nodejs 10.19.0
 ruby 2.7.0
 yarn 1.22.0
+pluto 4.2.0
+kubectl 1.20.1
+flux2 0.24.0
+1password 1.12.3
