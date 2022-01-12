@@ -53,7 +53,7 @@ if [[ $(uname) == "Linux" ]]; then
     echo "Installing KOPS now"
     curl -LO https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
     chmod +x kops-linux-amd64
-    sudo mv ./kops-linux-amd64 /usr/local/bin/kops 
+    sudo mv ./kops-linux-amd64 /usr/local/bin/kops
   fi
   if [[ ! -d /opt/kubectx ]]; then
   sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
@@ -152,20 +152,18 @@ sudo chsh -s /usr/local/bin/zsh $USER
 fi
 
 # Install asdf version manager plugins
-for p in nodejs ruby yarn; do
-  if [[ ! -d $HOME/.asdf/plugins/$p ]]; then
-    echo "Installing asdf plugin $p..."
-    asdf plugin add $p
-    if [[ $p == "nodejs" ]]; then
+cat tool-versions | while read plugin version; do
+  if [[ ! -d $HOME/.asdf/plugins/$plugin ]]; then
+    echo "Installing asdf plugin $plugin..."
+    asdf plugin add $plugin
+    if [[ $plugin == "nodejs" ]]; then
       bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
     fi
   else
-    echo "asdf plugin $p already installed, updating..."
-    asdf plugin update $p
+    echo "asdf plugin $plugin already installed, updating..."
+    asdf plugin update $plugin
   fi
+  $HOME/.asdf/bin/asdf install "${plugin}" "${version}"
 done
-
-# Install default versions
-$HOME/.asdf/bin/asdf install
 
 echo "Setup complete, quit terminal and open iTerm to continue..."
