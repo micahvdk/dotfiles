@@ -14,20 +14,14 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Install Linux/brew dependencies
+installer::get::dependencies
+
 # Install brew
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
-else
-  echo "Homebrew already installed, updating..."
-  brew update
-fi
+brew::install
+
 # Install apps & packages with Brewfile
-echo "Installing packages and apps with Homebrew & Cask..."
-brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
-if [[ $(uname) == "Darwin" ]]; then
-  brew bundle --file=dependencies/Brewfile.cask --no-lock --no-upgrade
-fi
+brew::install::packages
 
 #### Shell (zsh) configuration ####
 # Install Oh My Zsh
