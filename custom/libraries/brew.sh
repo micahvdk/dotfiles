@@ -17,3 +17,11 @@ brew::install::packages(){
     brew bundle --file=dependencies/Brewfile.cask --no-lock --no-upgrade
   fi
 }
+
+brew::set::path(){
+  if [[ $(uname) == "Darwin" ]]; then
+    echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+  elif [[ $(uname) == "Linux" ]]; then
+    echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.bashrc
+  fi
+}

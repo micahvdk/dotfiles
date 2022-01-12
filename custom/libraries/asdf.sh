@@ -13,7 +13,7 @@ asdf::install::plugins() {
       echo "asdf plugin $plugin already installed, updating..."
       asdf plugin update $plugin
     fi
-    $HOME/.asdf/bin/asdf install "${plugin}" "${version}"
+    asdf install "${plugin}" "${version}"
   done
 }
 
@@ -26,6 +26,7 @@ asdf::install(){
     git checkout "$(git describe --abbrev=0 --tags)"
     cd ~/dotfiles
     echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+    source ~/.bashrc
   else
     echo "asdf already installed"
   fi
