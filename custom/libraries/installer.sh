@@ -2,7 +2,7 @@
 installer::get::dependencies() {
   if [[ "$(uname)" == "Linux" ]];then
     sudo apt update
-    sudo apt install
+    sudo apt install libpcap-dev make build-essentials
   else
     echo "Function only runs on Linux"
   fi
