@@ -19,7 +19,6 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-brew::set::path
 
 # Install apps & packages with Brewfile
 brew::install::packages
