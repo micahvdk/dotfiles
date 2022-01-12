@@ -17,6 +17,7 @@ zsh::get::plugin() {
       git pull
       cd $HOME/dotfiles
     fi
+  done
 }
 
 ########################
