@@ -1,4 +1,14 @@
 #Install kubetail
+installer::get::dependencies() {
+  if [[ "$(uname)" == "Linux" ]];then
+    sudo apt update
+    sudo apt install
+  else
+    echo "Function only runs on Linux"
+  fi
+}
+
+#Install kubetail
 installer::get::kubetail() {
   if [[ ! -d $HOME/.oh-my-zsh/custom/plugins/kubetail ]]; then
   git clone https://github.com/johanhaleby/kubetail.git ~/.oh-my-zsh/custom/plugins/kubetail
