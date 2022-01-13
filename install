@@ -18,8 +18,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 installer::get::dependencies
 
 # Install brew
-brew::install
 eval $(system::export::path)
+brew::install
 
 # Install apps & packages with Brewfile
 ulimit -n 8192 # Increase file descriptors limit to solve brew installing awscli
