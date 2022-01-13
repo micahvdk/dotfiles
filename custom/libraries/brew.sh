@@ -6,6 +6,11 @@ brew::set::path(){
     echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.bashrc
     echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.zshrc
   fi
+  if [[ "${SHELL}" == *"bash"* ]]; then
+    source ~/.bashrc
+  elif [[ "${SHELL}" == *"zsh"* ]]; then
+    source ~/.zshrc
+  fi
 }
 
 # Install brew
