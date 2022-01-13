@@ -78,5 +78,5 @@ log::params() {
 #   $1 - Message to log
 #########################
 log::function() {
-    log::log "${GREEN}INFO ${RESET} ==> Starting function ${FUNCNAME[0]}"
+    log::log "${GREEN}INFO ${RESET} ==> Starting function ${FUNCNAME[1]}"
 }
