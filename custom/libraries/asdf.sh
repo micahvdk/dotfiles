@@ -1,10 +1,10 @@
 # Install asdf version manager plugins and default versions
 asdf::install::plugins() {
   log::function
-  cat ~/dotfiles/tool-versions | while read plugin version; do
+  cat ~/dotfiles/tool-versions | while read plugin version source; do
     if [[ ! -d $HOME/.asdf/plugins/$plugin ]]; then
       echo "Installing asdf plugin $plugin..."
-      asdf plugin add $plugin
+      asdf plugin add "${plugin}" "${source}"
       if [[ $plugin == "nodejs" ]]; then
         if [[ -f ~/.asdf/plugins/"${plugin}"/bin/import-release-team-keyring ]]; then
           bash ~/.asdf/plugins/"${plugin}"/bin/import-release-team-keyring
