@@ -19,7 +19,11 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-system::source::shell
+if [[ "${SHELL}" == *"bash"* ]]; then
+  . ~/.bashrc
+elif [[ "${SHELL}" == *"zsh"* ]]; then
+  . ~/.zshrc
+fi
 
 # Install apps & packages with Brewfile
 brew::install::packages
@@ -53,7 +57,11 @@ touch $HOME/.z
 system::set::default_shell
 
 # Install asdf version manager plugins
-system::source::shell
+if [[ "${SHELL}" == *"bash"* ]]; then
+  . ~/.bashrc
+elif [[ "${SHELL}" == *"zsh"* ]]; then
+  . ~/.zshrc
+fi
 asdf::install::plugins
 
 echo "Setup complete, quit terminal and open iTerm to continue..."
