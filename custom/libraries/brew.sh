@@ -33,7 +33,4 @@ brew::install::packages(){
   log::function
   echo "Installing packages and apps with Homebrew & Cask..."
   brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
-  if [[ $(uname) == "Darwin" ]]; then
-    brew bundle --file=dependencies/Brewfile.cask --no-lock --no-upgrade
-  fi
 }
