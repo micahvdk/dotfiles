@@ -23,6 +23,17 @@ brew::set::path(){
   fi
 }
 
+brew::export::path(){
+  log::function
+  if [[ $(uname) == "Darwin" ]]; then
+    PATH=/usr/local/bin:"${PATH}"
+    echo "export ${PATH}"
+  elif [[ $(uname) == "Linux" ]]; then
+    PATH=/home/linuxbrew/.linuxbrew/bin:"${PATH}"
+    echo "export ${PATH}"
+  fi
+}
+
 # Install brew
 brew::install() {
   log::function

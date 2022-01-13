@@ -19,7 +19,7 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-eval $(brew::set::path)
+eval $(brew::export::path)
 
 # Install apps & packages with Brewfile
 brew::install::packages
