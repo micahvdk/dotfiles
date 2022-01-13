@@ -3,6 +3,10 @@
 set -e
 
 echo "Setting up dev environment..."
+# Source bash libraries
+for library in "$(dirname "$0")"/custom/libraries/*; do
+. "${library}"
+done
 
 # Ask for the administrator password upfront
 sudo -v
@@ -10,162 +14,46 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Do the following on MacOS only
-if [[ $(uname) == "Darwin" ]]; then
-  echo "MacOS Detected"
-  # Install brew
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "Installing Homebrew..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
-  else
-    echo "Homebrew already installed, updating..."
-    brew update
-  fi
-  # Install apps & packages with Brewfile
-  echo "Installing packages and apps with Homebrew & Cask..."
-  brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
-fi
+# Install Linux/brew dependencies
+installer::get::dependencies
 
-if [[ $(uname) == "Linux" ]]; then
-  echo "Linux Detected"
-  # Install brew
-  # Install apps & packages with Apt
-    if [[ ! -d $HOME/.asdf ]]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-    cd ~/.asdf
-    git checkout "$(git describe --abbrev=0 --tags)"
-    cd ~/dotfiles
-    echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-    fi
-  echo "Installing packages and with apt"
-  sudo apt update
-  sudo apt-get install -y ack libpcap-dev coreutils python gem ruby rbenv hub git build-essential curl awscli postgresql postgresql-contrib mysql-client telnet pinentry-tty tig unzip neovim watch wget zsh
-    if [[ ! -f /usr/local/bin/kubectl ]]; then
-    echo "Installing kubectl"
-    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/kubectl
-    openssl sha1 -sha256 kubectl
-    chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin
-    else
-    echo "Kubectl is already installed"
-    fi
-    if [[ ! -f /usr/local/bin/kops ]]; then
-    echo "Installing KOPS now"
-    curl -LO https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
-    chmod +x kops-linux-amd64
-    sudo mv ./kops-linux-amd64 /usr/local/bin/kops 
-  fi
-  if [[ ! -d /opt/kubectx ]]; then
-  sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
-  fi
-  sudo ln -sf /opt/kubectx/kubectx /usr/local/bin/kubectx
-  sudo ln -sf /opt/kubectx/kubens /usr/local/bin/kubens
-  if [[ ! -f /usr/local/bin/kubeval ]]; then
-  wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
-  mkdir -p ./kubeval
-  tar xf kubeval-linux-amd64.tar.gz -C ./kubeval
-  sudo mv ./kubeval/kubeval /usr/local/bin
-  rm -f kubeval-linux-amd64.tar.gz
-  rm -rf ./kubeval
-  fi
-  curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-  sudo mv /tmp/eksctl /usr/local/bin
-fi
+# Install brew
+brew::install
+eval $(system::export::path)
+
+# Install apps & packages with Brewfile
+ulimit -n 8192 # Increase file descriptors limit to solve brew installing awscli
+brew::install::packages
+
 #### Shell (zsh) configuration ####
 # Install Oh My Zsh
-if [[ ! -d $HOME/.oh-my-zsh ]]; then
-  # Install Oh My Zsh
-  echo "Installing Oh My Zsh..."
-  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
-else
-  # Use the inbuilt mechanism to update Oh My Zsh
-  echo "Oh My Zsh already installed, updating..."
-  cd $HOME/.oh-my-zsh
-  git pull
-  cd $HOME/dotfiles
-fi
+zsh::get::omz
 
 # Install Powerlevel10k zsh theme
-if [[ ! -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
-  echo "Installing Powerlevel10k zsh theme..."
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
-else
-  echo "Powerlevel10k already installed, updating..."
-  cd $HOME/.oh-my-zsh/custom/themes/powerlevel10k
-  git pull
-  cd $HOME/dotfiles
-fi
+zsh::get::p10k
 
 #Install kubetail
-if [[ ! -d $HOME/.oh-my-zsh/custom/plugins/kubetail ]]; then
-git clone https://github.com/johanhaleby/kubetail.git ~/.oh-my-zsh/custom/plugins/kubetail
-fi
+installer::get::kubetail
+
 # Install additional zsh plugins not included with Oh My Zsh
-for r in zsh-autosuggestions zsh-syntax-highlighting; do
-  if [[ ! -d $HOME/.oh-my-zsh/custom/plugins/$r ]]; then
-    echo "Installing $r..."
-    git clone --depth=1 https://github.com/zsh-users/$r $HOME/.oh-my-zsh/custom/plugins/$r
-  else
-    echo "$r already installed, updating..."
-    cd $HOME/.oh-my-zsh/custom/plugins/$r
-    git pull
-    cd $HOME/dotfiles
-  fi
-done
+zsh::get::plugin zsh-autosuggestions zsh-syntax-highlighting
 
 # Link custom .zsh files to Oh My Zsh custom folder
-if [[ ! -f custom/secret.zsh ]]; then
-  touch custom/secret.zsh
-fi
-for f in custom/*; do
-  echo "Linking custom .zsh files..."
-  ln -sf $HOME/dotfiles/$f $HOME/.oh-my-zsh/$f
-done
+dotfiles::link::custom_zsh
 
 # Link ssh config
-echo "Linking ssh config..."
-mkdir -p $HOME/.ssh
-ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
+dotfiles::link::ssh_config
 
 # Link $HOME dotfiles
-echo "Linking files to home directory..."
-for f in *; do
-  if [[ $f == "README.md" || $f == "install" ]]; then
-    echo "Ignoring special file $f"
-  elif [[ -d $f ]]; then
-    echo "Ignoring directory $f"
-  else
-    ln -sf $HOME/dotfiles/$f $HOME/.$f
-  fi
-done
+dotfiles::link::files
 
 # Create this file to suppress error from z on first 'cd'
 touch $HOME/.z
 
-if [[ $(uname) == "Linux" ]]; then
-# Change the users default shell
-echo "Changing the default shell..."
-sudo chsh -s /usr/bin/zsh $USER
-else
-echo "Changing the default shell..."
-sudo chsh -s /usr/local/bin/zsh $USER
-fi
+# Set default shell depending on MacOS or Linux
+system::set::default_shell
 
 # Install asdf version manager plugins
-for p in nodejs ruby yarn; do
-  if [[ ! -d $HOME/.asdf/plugins/$p ]]; then
-    echo "Installing asdf plugin $p..."
-    asdf plugin add $p
-    if [[ $p == "nodejs" ]]; then
-      bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-    fi
-  else
-    echo "asdf plugin $p already installed, updating..."
-    asdf plugin update $p
-  fi
-done
-
-# Install default versions
-$HOME/.asdf/bin/asdf install
+asdf::install::plugins
 
 echo "Setup complete, quit terminal and open iTerm to continue..."

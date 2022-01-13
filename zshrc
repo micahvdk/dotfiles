@@ -5,14 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Source bash libraries
+for library in ~/dotfiles/custom/libraries/*; do
+. "${library}"
+done
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-#Adding ASDF
-. $HOME/.asdf/asdf.sh
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,11 +61,13 @@ plugins=(
   vscode
   z
   zsh-autosuggestions
-  zsh_reload
   zsh-syntax-highlighting
   )
 
-source $ZSH/oh-my-zsh.sh
+. $ZSH/oh-my-zsh.sh
+
+# Export asdf and brew to PATH
+eval $(system::export::path)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || . ~/.p10k.zsh

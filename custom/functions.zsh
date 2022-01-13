@@ -41,3 +41,20 @@ function brew() {
       ;;
   esac
 }
+
+# Imports SSH keys from OnePassword using title as file name
+function op::import::ssh_keys() {
+  local org_name
+  org_name="$1"
+  if op get account | jq '.name'; then
+    echo "OnePassword currently logged in"
+  else
+    echo "Need to login to OnePassword account"
+    eval $(op signin "${org_name}")
+  fi
+  for item in $(op list items --tags cli,ssh-key --vault private); do
+    ssh_key_name=$(echo "${item}" | op get item - --fields title)
+    echo -e $(echo "${item}" | op get item - --fields public_key) > ~/.ssh/"${ssh_key_name}.pub"
+    echo -e $(echo "${item}" | op get item - --fields private_key) > ~/.ssh/"${ssh_key_name}"
+  done
+}

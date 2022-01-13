@@ -1,8 +1,5 @@
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-drivers"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
 
 # Search tool like grep, but optimized for programmers
@@ -90,28 +87,10 @@ tap "johanhaleby/kubetail"
 brew "johanhaleby/kubetail/kubetail"
 
 # Decode all parts of a kubernetes secret, no more copypasting!
-tap "mveritym/mel"
-brew "mveritym/mel/kubedecode"
+tap "mveritym/homebrew-mel"
+brew "mveritym/homebrew-mel/kubedecode"
 
 # The official CLI for Amazon EKS
 tap "weaveworks/tap"
 brew "weaveworks/tap/eksctl"
 
-cask "cyberduck"
-cask "docker"
-cask "firefox"
-cask "font-fira-code-nerd-font"
-cask "google-chrome"
-cask "google-cloud-sdk"
-cask "google-drive-file-stream"
-cask "gpg-suite-no-mail"
-cask "insomnia"
-cask "iterm2"
-cask "lastpass"
-cask "rectangle"
-cask "slack"
-cask "tableplus"
-cask "visual-studio-code"
-cask "vnc-viewer"
-cask "spotify"
-cask "microsoft-edge"
