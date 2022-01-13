@@ -1,5 +1,6 @@
 # Link custom .zsh files to Oh My Zsh custom folder
 dotfiles::link::custom_zsh() {
+  log::function
   if [[ ! -f custom/secret.zsh ]]; then
     touch custom/secret.zsh
   fi
@@ -11,6 +12,7 @@ dotfiles::link::custom_zsh() {
 
 # Link ssh config
 dotfiles::link::ssh_config() {
+  log::function
   echo "Linking ssh config..."
   mkdir -p $HOME/.ssh
   ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
@@ -18,6 +20,7 @@ dotfiles::link::ssh_config() {
 
 # Link $HOME dotfiles
 dotfiles::link::files() {
+  log::function
   echo "Linking files to home directory..."
   for f in *; do
     if [[ $f == "README.md" || $f == "install" ]]; then

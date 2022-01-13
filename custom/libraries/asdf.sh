@@ -1,6 +1,6 @@
 # Install asdf version manager plugins and default versions
 asdf::install::plugins() {
-  log::info "Running asdf::install::plugins"
+  log::function
   cat ~/dotfiles/tool-versions | while read plugin version; do
     if [[ ! -d $HOME/.asdf/plugins/$plugin ]]; then
       echo "Installing asdf plugin $plugin..."
@@ -20,7 +20,7 @@ asdf::install::plugins() {
 
 # Install asdf version manager
 asdf::install(){
-  log::info "Running asdf::install"
+  log::function
   if [[ ! -d $HOME/.asdf ]]; then
     echo "Installing asdf"
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf

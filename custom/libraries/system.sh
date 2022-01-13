@@ -1,4 +1,5 @@
 system::set::default_shell() {
+  log::function
   if [[ $(uname) == "Linux" ]]; then
   # Change the users default shell
   echo "Changing the default shell..."
@@ -10,6 +11,7 @@ system::set::default_shell() {
 }
 
 system::source::shell() {
+  log::function
   if [[ "${SHELL}" == *"bash"* ]]; then
     source ~/.bashrc
   elif [[ "${SHELL}" == *"zsh"* ]]; then

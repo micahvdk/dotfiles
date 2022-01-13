@@ -47,6 +47,7 @@ zsh::get::p10k() {
 #   install progress
 #########################
 zsh::get::omz() {
+  log::function
   if [[ ! -d $HOME/.oh-my-zsh ]]; then
     # Install Oh My Zsh
     echo "Installing Oh My Zsh..."
