@@ -22,6 +22,7 @@ brew::install
 eval $(brew::export::path)
 
 # Install apps & packages with Brewfile
+ulimit -n 8192 # Increase file descriptors limit to solve brew installing awscli
 brew::install::packages
 
 #### Shell (zsh) configuration ####
