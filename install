@@ -19,7 +19,7 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-eval "$(brew::set::path)"
+eval $(brew::set::path)
 
 # Install apps & packages with Brewfile
 brew::install::packages
@@ -53,7 +53,6 @@ touch $HOME/.z
 system::set::default_shell
 
 # Install asdf version manager plugins
-eval "$(system::source::shell)"
 asdf::install::plugins
 
 echo "Setup complete, quit terminal and open iTerm to continue..."
