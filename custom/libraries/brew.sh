@@ -16,7 +16,7 @@ brew::set::path(){
 
 # Install brew
 brew::install() {
-  log::info "Running ${FUNCNAME[0]}"
+  log::function
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
@@ -29,7 +29,7 @@ brew::install() {
 
 # Install apps & packages with Brewfile
 brew::install::packages(){
-  log::info "Running ${FUNCNAME[0]}"
+  log::function
   echo "Installing packages and apps with Homebrew & Cask..."
   brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
   if [[ $(uname) == "Darwin" ]]; then
