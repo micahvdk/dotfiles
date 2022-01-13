@@ -51,12 +51,11 @@ function op::import::ssh_keys() {
     echo "OnePassword currently logged in"
   else
     echo "Need to login to OnePassword account"
-    if eval $(op signin "${org_name}".1password.com "${email}" ); then
-      op signin "${org_name}"
-    fi
+    eval $(op signin "${org_name}".1password.com "${email}" )
   fi
   for item in $(op list items --tags cli,ssh-key --vault private); do
     ssh_key_name=$(echo "${item}" | op get item - --fields title)
+    log::info "Importing SSH Key ${ssh_key_name}"
     echo -e $(echo "${item}" | op get item - --fields public_key) > ~/.ssh/"${ssh_key_name}.pub"
     echo -e $(echo "${item}" | op get item - --fields private_key) > ~/.ssh/"${ssh_key_name}"
   done
