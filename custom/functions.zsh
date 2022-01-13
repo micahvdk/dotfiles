@@ -51,7 +51,7 @@ function op::import::ssh_keys() {
     echo "OnePassword currently logged in"
   else
     echo "Need to login to OnePassword account"
-    if eval $(op signin "${org_name}"1password.com "${email}" ); then
+    if eval $(op signin "${org_name}".1password.com "${email}" ); then
       op signin "${org_name}"
     fi
   fi
