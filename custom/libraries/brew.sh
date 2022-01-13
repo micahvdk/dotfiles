@@ -6,12 +6,12 @@ brew::set::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
     PATH=/usr/local/bin:"${PATH}"
-    echo "${PATH}" >> ~/.bashrc
-    echo "${PATH}" >> ~/.zshrc
+    echo "PATH='"${PATH}"'" >> ~/.bashrc
+    echo "PATH='"${PATH}"'" >> ~/.zshrc
   elif [[ $(uname) == "Linux" ]]; then
     PATH=/home/linuxbrew/.linuxbrew/bin:"${PATH}"
-    echo "${PATH}" >> ~/.bashrc
-    echo "${PATH}" >> ~/.zshrc
+    echo "PATH='"${PATH}"'" >> ~/.bashrc
+    echo "PATH='"${PATH}"'" >> ~/.zshrc
   fi
 }
 
@@ -19,10 +19,10 @@ brew::export::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
     PATH="/usr/local/bin:${PATH}"
-    echo "export '"${PATH}"'"
+    echo "export PATH='"${PATH}"'"
   elif [[ $(uname) == "Linux" ]]; then
     PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
-    echo "export '"${PATH}"'"
+    echo "export PATH='"${PATH}"'"
   fi
 }
 
