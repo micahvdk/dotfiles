@@ -32,3 +32,11 @@ dotfiles::link::files() {
     fi
   done
 }
+
+dotfiles::complete() {
+if [[ $(uname) == "Darwin" ]]; then
+  log::info "Setup complete, quit terminal and open iTerm to continue..."
+else
+  log::info "Setup complete - Open a new terminal"
+fi
+}

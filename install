@@ -56,4 +56,4 @@ system::set::default_shell
 # Install asdf version manager plugins
 asdf::install::plugins
 
-echo "Setup complete, quit terminal and open iTerm to continue..."
+dotfiles::complete
