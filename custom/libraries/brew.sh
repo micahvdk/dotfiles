@@ -6,31 +6,23 @@ brew::set::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
     PATH=/usr/local/bin:"${PATH}"
-    if [[ "${FUNCNAME[1]}" == "brew::install" ]]; then
-      echo "${PATH}" >> ~/.bashrc
-      echo "${PATH}" >> ~/.zshrc
-    else
-      echo "export ${PATH}"
-    fi
+    echo "${PATH}" >> ~/.bashrc
+    echo "${PATH}" >> ~/.zshrc
   elif [[ $(uname) == "Linux" ]]; then
     PATH=/home/linuxbrew/.linuxbrew/bin:"${PATH}"
-    if [[ "${FUNCNAME[1]}" == "brew::install" ]]; then
-      echo "${PATH}" >> ~/.bashrc
-      echo "${PATH}" >> ~/.zshrc
-    else
-      echo "export ${PATH}"
-    fi
+    echo "${PATH}" >> ~/.bashrc
+    echo "${PATH}" >> ~/.zshrc
   fi
 }
 
 brew::export::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
-    PATH=/usr/local/bin:"${PATH}"
-    echo "export ${PATH}"
+    PATH="/usr/local/bin:${PATH}"
+    echo "export '"${PATH}"'"
   elif [[ $(uname) == "Linux" ]]; then
-    PATH=/home/linuxbrew/.linuxbrew/bin:"${PATH}"
-    echo "export ${PATH}"
+    PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+    echo "export '"${PATH}"'"
   fi
 }
 
