@@ -19,7 +19,7 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-eval $(brew::export::path)
+eval $(system::export::path)
 
 # Install apps & packages with Brewfile
 ulimit -n 8192 # Increase file descriptors limit to solve brew installing awscli

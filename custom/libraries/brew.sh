@@ -15,17 +15,6 @@ brew::set::path(){
   fi
 }
 
-brew::export::path(){
-  log::function
-  if [[ $(uname) == "Darwin" ]]; then
-    PATH="${HOME}/.asdf/shims:/usr/local/bin:${PATH}"
-    echo "export PATH='"${PATH}"'"
-  elif [[ $(uname) == "Linux" ]]; then
-    PATH="${HOME}/.asdf/shims:/home/linuxbrew/.linuxbrew/bin:${PATH}"
-    echo "export PATH='"${PATH}"'"
-  fi
-}
-
 # Install brew
 brew::install() {
   log::function

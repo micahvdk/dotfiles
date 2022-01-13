@@ -18,3 +18,14 @@ system::source::shell() {
     echo ". ~/.zshrc"
   fi
 }
+
+system::export::path(){
+  log::function
+  if [[ $(uname) == "Darwin" ]]; then
+    PATH="${HOME}/.asdf/shims:/usr/local/bin:${PATH}"
+    echo "export PATH='"${PATH}"'"
+  elif [[ $(uname) == "Linux" ]]; then
+    PATH="${HOME}/.asdf/shims:/home/linuxbrew/.linuxbrew/bin:${PATH}"
+    echo "export PATH='"${PATH}"'"
+  fi
+}

@@ -61,11 +61,13 @@ plugins=(
   vscode
   z
   zsh-autosuggestions
-  omz reload
   zsh-syntax-highlighting
   )
 
 . $ZSH/oh-my-zsh.sh
+
+# Export asdf and brew to PATH
+eval $(system::export::path)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || . ~/.p10k.zsh
