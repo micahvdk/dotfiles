@@ -45,12 +45,13 @@ function brew() {
 # Imports SSH keys from OnePassword using title as file name
 function op::import::ssh_keys() {
   local org_name
-  org_name="$1"
+  org_name="$2"
+  email="$1"
   if op get account | jq '.name' | grep "${org_name}"; then
     echo "OnePassword currently logged in"
   else
     echo "Need to login to OnePassword account"
-    if eval $(op signin "${org_name}"); then
+    if eval $(op signin "${org_name}"1password.com "${email}" ); then
       op signin "${org_name}"
     fi
   fi
