@@ -3,7 +3,7 @@
 # log.sh
 
 brew::set::path(){
-  log::info "Running ${FUNCNAME[0]}"
+  log::function
   if [[ $(uname) == "Darwin" ]]; then
     echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
     echo 'PATH="/usr/local/bin:$PATH"' >> ~/.zshrc

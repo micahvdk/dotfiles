@@ -71,3 +71,12 @@ log::params() {
         log::info "${param}"
     done
 }
+
+########################
+# Log function starting
+# Arguments:
+#   $1 - Message to log
+#########################
+log::function() {
+    log::log "${GREEN}INFO ${RESET} ==> Starting function ${FUNCNAME[0]}"
+}
