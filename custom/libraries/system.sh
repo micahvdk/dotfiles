@@ -13,8 +13,8 @@ system::set::default_shell() {
 system::source::shell() {
   log::function
   if [[ "${SHELL}" == *"bash"* ]]; then
-    source ~/.bashrc
+    . ~/.bashrc
   elif [[ "${SHELL}" == *"zsh"* ]]; then
-    source ~/.zshrc
+    . ~/.zshrc
   fi
 }

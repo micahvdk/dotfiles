@@ -28,7 +28,7 @@ asdf::install(){
     git checkout "$(git describe --abbrev=0 --tags)"
     cd ~/dotfiles
     echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-    source ~/.bashrc
+    . ~/.bashrc
   else
     echo "asdf already installed"
   fi
