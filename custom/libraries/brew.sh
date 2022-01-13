@@ -1,3 +1,6 @@
+### Load required libraries
+. "$(dirname "$0")"/system.sh
+
 brew::set::path(){
   if [[ $(uname) == "Darwin" ]]; then
     echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
@@ -6,11 +9,7 @@ brew::set::path(){
     echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.bashrc
     echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.zshrc
   fi
-  if [[ "${SHELL}" == *"bash"* ]]; then
-    source ~/.bashrc
-  elif [[ "${SHELL}" == *"zsh"* ]]; then
-    source ~/.zshrc
-  fi
+  system::source::shell
 }
 
 # Install brew

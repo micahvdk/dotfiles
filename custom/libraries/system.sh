@@ -8,3 +8,11 @@ system::set::default_shell() {
   sudo chsh -s /usr/local/bin/zsh $USER
   fi
 }
+
+system::source::shell() {
+  if [[ "${SHELL}" == *"bash"* ]]; then
+    source ~/.bashrc
+  elif [[ "${SHELL}" == *"zsh"* ]]; then
+    source ~/.zshrc
+  fi
+}
