@@ -5,13 +5,16 @@
 brew::set::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
-    echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-    echo 'PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+    PATH=/usr/local/bin:"${PATH}"
+    echo "${PATH}" >> ~/.bashrc
+    echo "${PATH}" >> ~/.zshrc
+    echo "export ${PATH}"
   elif [[ $(uname) == "Linux" ]]; then
-    echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.bashrc
-    echo 'PATH="$PATH":/home/linuxbrew/.linuxbrew/bin' >> ~/.zshrc
+    PATH=/home/linuxbrew/.linuxbrew/bin:"${PATH}"
+    echo "${PATH}" >> ~/.bashrc
+    echo "${PATH}" >> ~/.zshrc
+    echo "export ${PATH}"
   fi
-  system::source::shell
 }
 
 # Install brew

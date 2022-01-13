@@ -19,7 +19,7 @@ installer::get::dependencies
 
 # Install brew
 brew::install
-eval "$(system::source::shell)"
+eval "$(brew::set::path)"
 
 # Install apps & packages with Brewfile
 brew::install::packages
