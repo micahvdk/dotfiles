@@ -1,5 +1,6 @@
-### Load required libraries
-. "$(dirname "$0")"/system.sh
+## Expected libaries to be loaded.
+# system.sh
+# log.sh
 
 brew::set::path(){
   log::info "Running ${FUNCNAME[0]}"
