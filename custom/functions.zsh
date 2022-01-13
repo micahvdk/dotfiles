@@ -46,7 +46,7 @@ function brew() {
 function op::import::ssh_keys() {
   local org_name
   org_name="$1"
-  if op get account | jq '.name'; then
+  if op get account | jq '.name' | grep "${org_name}"; then
     echo "OnePassword currently logged in"
   else
     echo "Need to login to OnePassword account"
