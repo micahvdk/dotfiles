@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Source bash libraries
-for library in ~/dotfiles/custom/libraries/*; do
+for library in ~/dotfiles/libraries/*; do
 . "${library}"
 done
 

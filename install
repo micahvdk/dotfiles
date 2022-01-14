@@ -4,7 +4,7 @@ set -e
 
 echo "Setting up dev environment..."
 # Source bash libraries
-for library in "$(dirname "$0")"/custom/libraries/*; do
+for library in "$(dirname "$0")"/libraries/*; do
 . "${library}"
 done
 
