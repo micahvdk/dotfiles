@@ -17,19 +17,3 @@ asdf::install::plugins() {
     asdf install "${plugin}" "${version}"
   done
 }
-
-# Install asdf version manager
-asdf::install(){
-  log::function
-  if [[ ! -d $HOME/.asdf ]]; then
-    echo "Installing asdf"
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-    cd ~/.asdf
-    git checkout "$(git describe --abbrev=0 --tags)"
-    cd ~/dotfiles
-    echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-    . ~/.bashrc
-  else
-    echo "asdf already installed"
-  fi
-}
