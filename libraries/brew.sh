@@ -32,5 +32,5 @@ brew::install() {
 brew::install::packages(){
   log::function
   echo "Installing packages and apps with Homebrew & Cask..."
-  brew bundle --file=dependencies/Brewfile --no-lock --no-upgrade
+  brew bundle --file=~/dotfiles/Brewfile --no-lock --no-upgrade
 }
