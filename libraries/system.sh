@@ -10,6 +10,10 @@ system::set::default_shell() {
   fi
 }
 
+
+# Export asdf and brew to path
+# This will just output "export $PATH" which needs to be run using eval
+# Example: eval $(system::export::path)
 system::export::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
