@@ -1,5 +1,5 @@
 # Clean local repo(s) of deleted upstream branches
-function git-clean {
+git-clean() {
   if [[ $1 == "-r" ]]; then
     # Clean all repos
     # Assumes all your repos are in a single folder
@@ -17,7 +17,7 @@ function git-clean {
 }
 
 # Clean deleted upstream branches
-function cleanup-local-branches {
+cleanup-local-branches() {
   # fetch all branches
   git fetch --all
   # Prune remote branches
@@ -27,7 +27,7 @@ function cleanup-local-branches {
 }
 
 # Intercept well-intentioned brew commands that will break things
-function brew() {
+brew() {
   case $@ in
     *elasticsearch|*mysql|*node|*nodenv|*nvm|*postgresql|*rbenv|*ruby|*rvm|*yarn)
       if [[ $1 == "install" || $1 == "upgrade" ]]; then
@@ -40,23 +40,4 @@ function brew() {
       command brew $@
       ;;
   esac
-}
-
-# Imports SSH keys from OnePassword using title as file name
-function op::import::ssh_keys() {
-  local org_name
-  org_name="$2"
-  email="$1"
-  if op get account 2>/dev/null | jq '.name' | grep "${org_name}"; then
-    echo "OnePassword currently logged in"
-  else
-    echo "Need to login to OnePassword account"
-    eval $(op signin "${org_name}".1password.com "${email}" )
-  fi
-  for item in $(op list items --tags cli,ssh-key --vault private); do
-    ssh_key_name=$(echo "${item}" | op get item - --fields title)
-    log::info "Importing SSH Key ${ssh_key_name}"
-    echo -e $(echo "${item}" | op get item - --fields public_key) > ~/.ssh/"${ssh_key_name}.pub"
-    echo -e $(echo "${item}" | op get item - --fields private_key) > ~/.ssh/"${ssh_key_name}"
-  done
 }
