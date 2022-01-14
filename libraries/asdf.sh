@@ -5,11 +5,6 @@ asdf::install::plugins() {
     if [[ ! -d $HOME/.asdf/plugins/$plugin ]]; then
       echo "Installing asdf plugin $plugin..."
       asdf plugin add "${plugin}" "${source}"
-      if [[ $plugin == "nodejs" ]]; then
-        if [[ -f ~/.asdf/plugins/"${plugin}"/bin/import-release-team-keyring ]]; then
-          bash ~/.asdf/plugins/"${plugin}"/bin/import-release-team-keyring
-        fi
-      fi
     else
       echo "asdf plugin $plugin already installed, updating..."
       asdf plugin update $plugin
