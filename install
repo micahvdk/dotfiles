@@ -54,6 +54,7 @@ touch $HOME/.z
 system::set::default_shell
 
 # Install asdf version manager plugins
+asdf::export::path
 asdf::install::plugins
 
 dotfiles::complete

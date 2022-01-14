@@ -17,3 +17,10 @@ asdf::install::plugins() {
     asdf install "${plugin}" "${version}"
   done < ~/dotfiles/tool-versions
 }
+
+asdf::export::path() {
+  log::function
+  if ! command -v asdf; then
+    eval $(echo "export PATH='${HOME}/.asdf/shims:'"${PATH}"'")
+  fi
+}
