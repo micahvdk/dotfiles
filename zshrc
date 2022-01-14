@@ -5,8 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# DOTFILE_DIR
+DOTFILE_DIR="${HOME}"/dotfiles
+
 # Source bash libraries
-for library in ~/dotfiles/libraries/*; do
+for library in "${DOTFILE_DIR}"/libraries/*; do
 . "${library}"
 done
 
@@ -67,7 +70,8 @@ plugins=(
 . $ZSH/oh-my-zsh.sh
 
 # Export asdf and brew to PATH
-eval $(system::export::path)
+brew::shell::export
+asdf::shell::export
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || . ~/.p10k.zsh
