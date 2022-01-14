@@ -10,15 +10,6 @@ system::set::default_shell() {
   fi
 }
 
-system::source::shell() {
-  log::function
-  if [[ "${SHELL}" == *"bash"* ]]; then
-    echo ". ~/.bashrc"
-  elif [[ "${SHELL}" == *"zsh"* ]]; then
-    echo ". ~/.zshrc"
-  fi
-}
-
 system::export::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then
