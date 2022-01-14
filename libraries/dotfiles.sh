@@ -14,8 +14,22 @@ dotfiles::link::custom_zsh() {
 dotfiles::link::ssh_config() {
   log::function
   echo "Linking ssh config..."
+
   mkdir -p $HOME/.ssh
   ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
+}
+
+dotfiles::link::ssh_config() {
+  log::function
+  log::info "Linking custom .zsh files..."
+  mkdir -p $HOME/.ssh
+  if [[ $(uname -s) == "Darwin" ]]; then
+    ln -sf $SCRIPT_DIR/ssh/config.mac $HOME/.ssh/config
+  else
+    ln -sf $SCRIPT_DIR/ssh/config.linux $HOME/.ssh/config
+  fi
+  mkdir -p $HOME/.ssh/config.d
+  touch $HOME/.ssh/config.d/empty.config
 }
 
 # Link $HOME dotfiles
