@@ -13,3 +13,16 @@ alias hosts='sudo $EDITOR /etc/hosts'
 
 # Use neovim instead of vim, it's just friendlier
 alias vim='nvim'
+
+# Docker
+alias dkb="docker build"
+alias dki="docker images"
+alias dkp="docker push"
+alias dkpl="docker pull"
+alias dkps="docker ps"
+alias dkr="docker run"
+alias dkri="docker run -it --entrypoint=bash"
+
+# kubectx shortcuts
+alias kx="kubectx"
+alias kns="kubens"

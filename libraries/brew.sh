@@ -2,6 +2,20 @@
 # system.sh
 # log.sh
 
+brew::export::path(){
+  log::function
+  if ! command -v brew; then
+    if [[ $(uname -sm) == "Darwin arm64" ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ $(uname -sm) == "Darwin x86_64" ]]; then
+      eval "$(/usr/local/bin/brew shellenv)"
+    elif [[ $(uname -sm) == "Linux x86_64" ]]; then
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      brew install gcc
+    fi
+  fi
+}
+
 brew::set::path(){
   log::function
   if [[ $(uname) == "Darwin" ]]; then

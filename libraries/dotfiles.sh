@@ -4,21 +4,13 @@ dotfiles::link::custom_zsh() {
   if [[ ! -f custom/secret.zsh ]]; then
     touch custom/secret.zsh
   fi
-  for f in custom/*.zsh; do
+  for file in custom/*.zsh; do
     echo "Linking custom .zsh files..."
-    ln -sf $HOME/dotfiles/$f $HOME/.oh-my-zsh/$f
+    ln -sf $HOME/dotfiles/$file $HOME/.oh-my-zsh/$file
   done
 }
 
 # Link ssh config
-dotfiles::link::ssh_config() {
-  log::function
-  echo "Linking ssh config..."
-
-  mkdir -p $HOME/.ssh
-  ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
-}
-
 dotfiles::link::ssh_config() {
   log::function
   log::info "Linking custom .zsh files..."
