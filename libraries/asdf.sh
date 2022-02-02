@@ -16,6 +16,6 @@ asdf::install::plugins() {
 asdf::export::path() {
   log::function
   if ! command -v asdf; then
-    eval $(echo "export PATH='${HOME}/.asdf/shims:'"${PATH}"'")
+    eval $(echo "export PATH='${HOME}'/.asdf/shims:'${PATH}'")
   fi
 }
