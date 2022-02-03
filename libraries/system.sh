@@ -23,6 +23,6 @@ system::export::path(){
 
 system::git::switch_to_ssh(){
   cd $(dirname "$0")
-  git config --global url."git@github.com:".insteadOf "https://github.com/"
+  git config url."git@github.com:".insteadOf "https://github.com/"
   cd -
 }
