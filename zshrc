@@ -70,8 +70,8 @@ plugins=(
 . $ZSH/oh-my-zsh.sh
 
 # Export asdf and brew to PATH
-brew::export::path
-asdf::export::path
+brew::export::path &> /dev/null
+asdf::export::path &> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
