@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+cd $(dirname "$0")
 
 echo "Setting up dev environment..."
 # Source bash libraries
@@ -16,6 +17,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Linux/brew dependencies
 installer::get::dependencies
+
+# Change dotfiles repo from HTTPS to SSH 
+system::git::switch_to_ssh
 
 # Install brew
 brew::install
