@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
-cd $(dirname "$0")
 
 echo "Setting up dev environment..."
 # Source bash libraries
-for library in "$(dirname "$0")"/libraries/*; do
+for library in "$(dirname "$0")"/libraries/* ; do
 . "${library}"
 done
 
@@ -19,7 +18,13 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 installer::get::dependencies
 
 # Change dotfiles repo from HTTPS to SSH 
+echo "doing the ssh thing"
+sleep 5
 system::git::switch_to_ssh
+sleep 5
+echo "finished the ssh thing"
+ls 
+sleep 5
 
 # Install brew
 brew::install
